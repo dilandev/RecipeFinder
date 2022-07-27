@@ -10,6 +10,13 @@ class App extends Component{
   state = {
     recipes:[]
   }
+
+  loadRecipe = async () =>{
+    const api_call = await fetch
+    (`https://api.spoonacular.com/recipes/findByIngredients?ingredients=rice,+eggs&number=24&apiKey=${API_KEY}`);
+    const data = await api_call.json();
+    this.setState({ recipes:data });
+  }
   
   getRecipe = async (e) =>{
     const recipeName = e.target.elements.recipeName.value;
@@ -23,7 +30,11 @@ class App extends Component{
   componentDidMount = () => {
     const json = localStorage.getItem("recipes");
     const recipes = JSON.parse(json);
-    this.setState({recipes : recipes});
+    if(recipes != null){
+      this.setState({recipes : recipes});
+    }else{
+      this.loadRecipe();
+    }
   }
 
   componentDidUpdate = () => {

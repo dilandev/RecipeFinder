@@ -22,12 +22,12 @@ function Recipe(){
 
   return(
     <div className="container">
-      { recipe.length != 0 && 
+      { recipe.length !== 0 && 
         <div className="active-recipe" style={{marginTop:"2rem"}}>
           <img className="active-recipe__img" src={recipe.image} alt={recipe.title}/>
           <h3 className="active-recipe__title">{recipe.title}</h3>
           <p>Estimated Time to Cook: <span>{recipe.readyInMinutes} Minutes</span></p>
-          <p className="active-recipe__website">Website:<span><a href={recipe.sourceUrl}>{recipe.sourceUrl}</a></span></p>
+          <p className="active-recipe__website">Website:<span><a href={recipe.sourceUrl} target="_blank">{recipe.sourceUrl}</a></span></p>
           <button className='active-recipe__button'>
             <Link to="/">Go Back</Link>
           </button>
